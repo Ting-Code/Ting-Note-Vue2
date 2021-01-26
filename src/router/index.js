@@ -10,6 +10,7 @@ import TrashDetail from '@/components/TrashDetail'
 Vue.use(Router)
 
 export default new Router({
+  base: '/hot/', //加上这一行
   routes: [
     {
       path: '/login',
