@@ -45,7 +45,7 @@ export default {
     padding: 2px 4px;
     background-color: #fff;
     box-shadow: 0px 0px 2px 0px #ccc;
-    border: none;
+    border: 1px solid red;
     cursor: pointer;
     display: inline-block;
   }
