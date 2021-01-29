@@ -14,10 +14,18 @@
 
 <script>
   import Avatar from '@/components/Avatar'
-    export default {
-      components: { Avatar }
-    }
+  import request from '@/helpers/request'
 
+    export default {
+      components: { Avatar },
+      methods: {
+        onLogout(){
+          request('/auth/login').then(data=>{
+            console.log(data)
+          })
+        }
+      }
+    }
 </script>
 
 <style lang="less" scoped>
