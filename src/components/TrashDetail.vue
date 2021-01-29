@@ -5,12 +5,20 @@
 </template>
 
 <script>
+  import Auth from '@/apis/auth'
   export default {
-    name: 'Login',
+    name: 'trash-detail',
     data () {
       return {
-        msg: '回收站详情页'
+        msg: '回收站'
       }
+    },
+    created() {
+      Auth.getInfo().then(res => {
+        if(!res.isLogin) {
+          this.$router.push({ path: '/login'})
+        }
+      })
     }
   }
 </script>

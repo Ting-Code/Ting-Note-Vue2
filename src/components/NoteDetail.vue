@@ -5,18 +5,24 @@
 </template>
 
 <script>
+  import Auth from '@/apis/auth'
   export default {
-    name: 'Login',
+    name: 'notedetail',
     data () {
       return {
-        msg: '详情页'
+        msg: '笔记本列表'
       }
+    },
+    created() {
+      Auth.getInfo().then(res => {
+        if(!res.isLogin) {
+          this.$router.push({ path: '/login'})
+        }
+      })
     }
   }
 </script>
-  h1 {
-    color: blue;
-  }
+
 <style scoped>
 
 </style>
