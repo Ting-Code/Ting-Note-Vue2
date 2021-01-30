@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Index from '@/components/Index'
 import Login from '@/components/Login'
 import NotebookList from '@/components/NotebookList'
 import NoteDetail from '@/components/NoteDetail'
@@ -12,6 +13,10 @@ Vue.use(Router)
 export default new Router({
   base: '/hot/',
   routes: [
+    {
+      path: '/',
+      component: Index
+    },
     {
       path: '/login',
       component: Login
