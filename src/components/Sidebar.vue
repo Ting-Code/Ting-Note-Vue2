@@ -1,60 +1,32 @@
 <template>
-    <div id="sidebar">
-      <Avatar></Avatar>
-      <div class="icons">
-        <router-link to="/note/1" title="笔记"><i class="iconfont icon-note"></i></router-link>
-        <router-link to="/notebooks" title="笔记本"><i class="iconfont icon-notebook"></i></router-link>
-        <router-link to="/trash/2" title="回收站"><i class="iconfont icon-trash"></i></router-link>
-      </div>
-      <div class="logout" @click="onLogout">
-        <i class="iconfont icon-logout"></i>
-      </div>
-    </div>
-  </template>
+  <div id="trash-detail">
+    <h1>noteId : {{ $route.query.noteId }}</h1>
+  </div>
+</template>
 
 <script>
-  import Avatar from '@/components/Avatar'
-  import request from '@/helpers/request'
+import Auth from '@/apis/auth'
 
-    export default {
-      components: { Avatar },
-      methods: {
-        onLogout(){
-          request('/auth/login').then(data=>{
-            this.$router.push({ path: 'login' })
-          })
-        }
-      }
+export default {
+  data () {
+    return {
+      msg: '回收站'
     }
+  },
+
+  created() {
+    Auth.getInfo()
+      .then(res => {
+        if(!res.isLogin) {
+          this.$router.push({ path: '/login' })
+        }
+      })
+  }
+}
 </script>
 
-<style lang="less" scoped>
-  #sidebar {
-    position: relative;
-    width: 56px;
-    text-align: center;
-    background-color: #2c333c;
-
-    .icons {
-      margin-top: 15px;
-        a {
-          padding: 6px 0;
-          display: block;
-        }
-        .router-link-active {
-          background-color: #5e6266;
-        }
-    }
-      .logout {
-        position: absolute;
-        bottom: 20px;
-        width: 100%;
-        text-align: center;
-        cursor: pointer;
-      }
-
-      .iconfont {
-        color: #fff;
-      }
-  }
-  </style>
+<style scoped>
+h1 {
+  color: blue;
+}
+</style>

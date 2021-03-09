@@ -2,19 +2,18 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
 import Login from '@/components/Login'
-import NotebookList from '@/components/NotebookList'
-import NoteDetail from '@/components/NoteDetail'
-import TrashDetail from '@/components/TrashDetail'
-
-
+import Notebooks from '@/components/NotebookList.vue'
+import NoteDetail from '@/components/NoteDetail.vue'
+import TrashDetail from '@/components/TrashDetail.vue'
 
 Vue.use(Router)
 
 export default new Router({
-  base: '/hot/',
+  mode: 'history',
   routes: [
     {
       path: '/',
+      name: 'Index',
       component: Index
     },
     {
@@ -23,15 +22,15 @@ export default new Router({
     },
     {
       path: '/notebooks',
-      component: NotebookList
+      component: Notebooks
     },
     {
-      path: '/note/:noteId',
+      path: '/note',
       component: NoteDetail
     },
     {
-      path: '/trash/:noteId',
+      path: '/trash',
       component: TrashDetail
-    },
+    }
   ]
 })
