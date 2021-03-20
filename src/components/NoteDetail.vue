@@ -111,6 +111,8 @@ export default {
   align-items: stretch;
   background-color: #fff;
   flex: 1;
+
+
 }
 
 </style>
