@@ -50,7 +50,7 @@ const actions = {
   },
 
   addNote({ commit }, { notebookId, title, content }) {
-   return Note.addNote({ notebookId }, { title, content })
+    return Note.addNote({ notebookId }, { title, content })
       .then(res => {
         console.log('add success...', res)
         commit('addNote', { note: res.data })
@@ -65,12 +65,12 @@ const actions = {
   },
 
   deleteNote({ commit }, { noteId }) {
-    return Note.deleteNote({ noteId })
+    return Notebook.deleteNotebook({ noteId })
       .then(res => {
-        commit('deleteNote', { noteId })
+        commit('deleteNotebook', { noteId })
         Message.success(res.msg)
       })
-  } 
+  }
 }
 
 

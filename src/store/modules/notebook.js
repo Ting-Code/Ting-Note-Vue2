@@ -40,8 +40,7 @@ const mutations = {
 }
 
 const actions = {
-  getNotebooks({ commit, state }) {
-    if(state.notebooks !== null) return Promise.resolve()
+  getNotebooks({ commit }) {
     return Notebook.getAll()
       .then(res => {
         commit('setNotebooks', { notebooks: res.data })
@@ -71,7 +70,7 @@ const actions = {
         commit('deleteNotebook', { notebookId: payload.notebookId })
         Message.success(res.msg)
       })
-  } 
+  }
 }
 
 
