@@ -1,7 +1,7 @@
 <template>
   <div class="detail" id="notebook-list">
     <header>
-      <a href="#" class="btn" @click.prevent="onCreate"> <i class="iconfont icon-plus"></i>新建笔记本 </a>
+      <a href="#" class="btn" @click.prevent="onCreate"> <i class="iconfont icon-biji"></i>新建笔记本 </a>
     </header>
     <main>
       <div class="layout">
@@ -10,8 +10,8 @@
           <router-link v-for="notebook in notebooks" :to="`/note?notebookId=${notebook.id}`" class="notebook"
                        :key="notebook.id">
             <div>
-              <span class="iconfont icon-notebook"><h3>{{notebook.title}}</h3></span>
-              <span>{{notebook.noteCounts}}</span>
+              <span class="iconfont icon-biji"><h3>{{notebook.title}}</h3></span>
+<!--              <span>{{notebook.noteCounts}}</span>-->
               <span class="action" @click.stop.prevent="onEdit(notebook)">编辑</span>
               <span class="action" @click.stop.prevent="onDelete(notebook)">删除</span>
               <span class="date">{{notebook.createdAtFriendly}}</span>

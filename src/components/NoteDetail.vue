@@ -8,8 +8,8 @@
           <span> 创建日期：{{curNote.createdAtFriendly}}</span>
           <span> 更新日期：{{curNote.updatedAtFriendly}}</span>
           <span> {{statusText}}</span>
-          <span class="iconfont icon-delete" @click="onDeleteNote"></span>
-          <span class="iconfont icon-fullscreen" @click="isShowPreview = !isShowPreview">2</span>
+          <span class="iconfont icon-huishouzhan" @click="onDeleteNote"></span>
+          <span class="iconfont icon-MD" @click="isShowPreview = !isShowPreview"></span>
           <!--<span class="iconfont icon-edit" @click="isShowPreview = isShowPreview"></span>-->
         </div>
         <div class="note-title">

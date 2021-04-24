@@ -4,7 +4,7 @@
       <span class="btn add-note" @click="onAddNote">添加笔记</span>
       <el-dropdown class="notebook-title" @command="handleCommand" placement="bottom">
                 <span class="el-dropdown-link">
-                    {{curBook.title}}<i class="iconfont icon-down"></i>
+                    {{curBook.title}}<i class="iconfont icon-biji"></i>
                 </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item v-for="notebook in notebooks" :command="notebook.id" :key="notebook.id">
