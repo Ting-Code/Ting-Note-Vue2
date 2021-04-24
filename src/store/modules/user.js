@@ -1,7 +1,7 @@
 import Auth from '@/apis/auth'
 import router from '@/router'
 
-window.router = router
+// window.router = router
 const state = {
   user: null
 }
@@ -19,34 +19,36 @@ const mutations = {
 }
 
 const actions = {
-  login({ commit }, { username, password }) {
-    return Auth.login({ username, password })
-      .then(res => {
-        commit('setUser', { user: res.data })
-      })
+  loginUser({commit}, {username, password}) {
+    return Auth.login({username, password}).then(res => {
+      commit('setUser', {user: res.data})
+    })
   },
 
-  register({ commit }, { username, password }) {
-    return Auth.register({ username, password })
-      .then(res => {
-        commit('setUser', { user: res.data })
-      })
+  registerUser({commit}, {username, password}) {
+    return Auth.register({username, password}).then(res => {
+      commit('setUser', {user: res.data})
+    })
   },
 
-  checkLogin({ commit }, payload) {
-    return Auth.getInfo()
-      .then(res => {
-        if(!res.isLogin) {
-          console.log('jump')
-          router.push(payload)
-        } else {
-          commit('setUser', { user: res.data })
-        }
-      })
+  logout({commit}, payload) {
+    return Auth.logout().then(res => {
+      commit('setUser', {user: null})
+      router.push(payload)
+    })
+  },
+
+  checkLogin({commit, state}, payload) {
+    if (state.user !== null) return Promise.resolve()
+    return Auth.getInfo().then(res => {
+      if (!res.isLogin) {
+        router.push(payload)
+      } else {
+        commit('setUser', {user: res.data})
+      }
+    })
   }
-
 }
-
 
 export default {
   state,

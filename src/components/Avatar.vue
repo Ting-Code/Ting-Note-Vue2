@@ -1,35 +1,24 @@
 <template>
   <span :title="username">{{slug}}</span>
 </template>
-
 <script>
-import Auth from '@/apis/auth'
-import { mapGetters, mapActions } from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
-  data() {
+  data(){
     return {}
   },
-
   created() {
-    this.setUser()
+    this.checkLogin()
   },
-
-  methods: {
-    ...mapActions({
-      'setUser': 'checkLogin'
-    })
-  },
-
   computed: {
-    ...mapGetters([
-      'username',
-      'slug'
-    ])
+    ...mapGetters(['username', 'slug']),
+  },
+  methods: {
+    ...mapActions(['checkLogin'])
   }
 }
 </script>
-
 <style scoped>
 span {
   display: inline-block;

@@ -1,5 +1,5 @@
-import Note from '@/apis/notes'
-import { Message } from 'element-ui'
+import Notes from '@/apis/notes'
+import {Message} from 'element-ui'
 
 const state = {
   notes: null,
@@ -7,12 +7,12 @@ const state = {
 }
 
 const getters = {
-  notes: state => state.notes || [],
+  notes: state => state.notes || {},
 
   curNote: state => {
-    if(!Array.isArray(state.notes)) return {}
-    if(!state.curNoteId) return state.notes[0] || {}
-    return state.notes.find(note => note.id == state.curNoteId) || {}
+    if(!Array.isArray(state.notes)) return { title: '', content: '' }
+    if (!state.curNoteId) return state.notes[0] || { title: '', content: '' }
+    return state.notes.find(note => note.id == state.curNoteId) || { title: '', content: '' }
   }
 }
 
@@ -26,53 +26,46 @@ const mutations = {
   },
 
   updateNote(state, payload) {
-    let note = state.notes.find(note => note.id === payload.noteId) || {}
+    let note = state.notes.find(note => note.id == payload.noteId) || {}
     note.title = payload.title
     note.content = payload.content
   },
 
   deleteNote(state, payload) {
-    state.notes = state.notes.filter(note => note.id !== payload.noteId)
+    state.notes = state.notes.filter(note => note.id != payload.noteId)
   },
 
-  setCurNote(state, payload) {
+  setCurNote({commit}, payload = {}) {
     state.curNoteId = payload.curNoteId
   }
-
 }
 
 const actions = {
-  getNotes({ commit }, { notebookId }) {
-    return Note.getAll({ notebookId })
-      .then(res => {
-        commit('setNote', { notes: res.data })
-      })
+  getNotes({commit},{notebookId}) {
+    return Notes.getAll({notebookId}).then(res => {
+      commit('setNote', {notes: res.data})
+    })
   },
 
-  addNote({ commit }, { notebookId, title, content }) {
-    return Note.addNote({ notebookId }, { title, content })
-      .then(res => {
-        console.log('add success...', res)
-        commit('addNote', { note: res.data })
-      })
+  addNote({commit}, {notebookId, title, content}) {
+    return Notes.addNotebook({notebookId}, {title, content}).then(res => {
+      commit('addNote', {note: res.data})
+    })
   },
 
-  updateNote({ commit }, { noteId, title, content }) {
-    return Note.updateNote({ noteId }, { title, content })
-      .then(res => {
-        commit('updateNote', { noteId, title, content })
-      })
+  updateNote({commit}, {noteId, title, content}) {
+    return Notes.updateNoteBook({noteId}, {title, content}).then(res => {
+      commit('updateNote', {noteId, title, content})
+    })
   },
 
-  deleteNote({ commit }, { noteId }) {
-    return Notebook.deleteNotebook({ noteId })
-      .then(res => {
-        commit('deleteNotebook', { noteId })
-        Message.success(res.msg)
-      })
+  deleteNote({commit}, {noteId}) {
+    return Notes.deleteNoteBook({noteId}).then(res => {
+      commit('deleteNote', {noteId})
+      Message.success(res.msg)
+    })
   }
 }
-
 
 export default {
   state,

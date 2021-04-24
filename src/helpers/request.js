@@ -1,38 +1,40 @@
-import axios from 'axios'
-import baseURLConfig from './config-baseURL'
+import axios from "axios";
+import baseURLConfig from "./config-baseURL";
+import {Message} from 'element-ui'
 
-//统一设置post请求的Content-Type
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-//服务端线上url地址
 axios.defaults.baseURL = baseURLConfig.baseURL
 axios.defaults.withCredentials = true
 
-//封装request函数
 export default function request(url, type = 'GET', data = {}) {
   return new Promise((resolve, reject) => {
-    let option = {
-      url,
+    let options = {
+      url: url,
       method: type,
       validateStatus(status) {
-        return (status >=200 && status < 300) || status === 400
+        return (status >= 200 && status < 300) || status === 400
       }
     }
-    if(type.toLowerCase() === 'get') {
-      option.params = data
-    }else {
-      option.data = data
+    if (type.toLowerCase() === 'get') {
+      options.params = data
+    } else {
+      options.data = data
     }
-    axios(option).then(res => {
-      if(res.status === 200) {
+    axios(options).then((res) => {
+      if (res.status === 200) {
         resolve(res.data)
-      }else {
-        console.error(res.data)
+      } else { //for 400
+        Message.error(res.data.msg)
         reject(res.data)
       }
-    }).catch(err=>{
-      console.error({msg: '网络异常'})
-      reject({msg: '网络异常'})
+    }).catch((err) => {
+      Message.error('网络异常')
+      reject({massage: '网络异常'})
     })
   })
 }
 
+// request('/auth/login', 'POST', {username: 'hunger', password: '123456'})
+//   .then(data=>{
+//     console.log(data)
+//   })

@@ -1,4 +1,4 @@
-import request from '@/helpers/request'
+import request from  '@/helpers/request'
 
 const URL = {
   REGISTER: '/auth/register',
@@ -7,11 +7,11 @@ const URL = {
   GET_INFO: '/auth'
 }
 
-export default {
-  register({username,password}){
+export  default {
+  register({username, password}) {
     return request(URL.REGISTER, 'POST', {username, password})
   },
-  login({username, password}){
+  login({username, password}) {
     return request(URL.LOGIN, 'POST', {username, password})
   },
   logout(){
