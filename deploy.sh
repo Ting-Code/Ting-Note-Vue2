@@ -9,3 +9,4 @@ git remote add origin git@gitee.com:TINGCYGF/note-view.git &&
 git push -f -u origin master &&
 cd - &&
 echo https://tingcygf.gitee.io/ting-ui-vue3/#/
+
