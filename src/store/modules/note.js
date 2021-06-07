@@ -1,4 +1,4 @@
-import Notes from '@/apis/notes'
+import Notes from '../../apis/notes'
 import {Message} from 'element-ui'
 
 const state = {
@@ -12,7 +12,7 @@ const getters = {
   curNote: state => {
     if(!Array.isArray(state.notes)) return { title: '', content: '' }
     if (!state.curNoteId) return state.notes[0] || { title: '', content: '' }
-    return state.notes.find(note => note.id == state.curNoteId) || { title: '', content: '' }
+    return state.notes.find(note => note.id === state.curNoteId) || { title: '', content: '' }
   }
 }
 
@@ -26,13 +26,13 @@ const mutations = {
   },
 
   updateNote(state, payload) {
-    let note = state.notes.find(note => note.id == payload.noteId) || {}
+    let note = state.notes.find(note => note.id === payload.noteId) || {}
     note.title = payload.title
     note.content = payload.content
   },
 
   deleteNote(state, payload) {
-    state.notes = state.notes.filter(note => note.id != payload.noteId)
+    state.notes = state.notes.filter(note => note.id !== payload.noteId)
   },
 
   setCurNote({commit}, payload = {}) {
@@ -54,7 +54,7 @@ const actions = {
   },
 
   updateNote({commit}, {noteId, title, content}) {
-    return Notes.updateNoteBook({noteId}, {title, content}).then(res => {
+    return Notes.updateNoteBook({noteId}, {title, content}).then(()=> {
       commit('updateNote', {noteId, title, content})
     })
   },
