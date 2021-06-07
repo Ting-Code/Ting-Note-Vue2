@@ -32,7 +32,7 @@ const actions = {
   },
 
   logout({commit}, payload) {
-    return Auth.logout().then(res => {
+    return Auth.logout().then(() => {
       commit('setUser', {user: null})
       router.push(payload)
     })

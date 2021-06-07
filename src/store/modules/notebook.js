@@ -1,4 +1,4 @@
-import Notebooks from '@/apis/notebooks'
+import Notebooks from '../../apis/notebooks'
 import {Message} from 'element-ui'
 
 const state = {
@@ -12,7 +12,7 @@ const getters = {
   curBook: state => {
     if(!Array.isArray(state.notebooks)) return {}
     if (!state.curBookId) return state.notebooks[0] || {}
-    return state.notebooks.find(notebook => notebook.id == state.curBookId) || {}
+    return state.notebooks.find(notebook => notebook.id === state.curBookId) || {}
   }
 }
 
@@ -23,12 +23,12 @@ const mutations = {
   },
 
   updateNotebook(state, payload) {
-    let notebook = state.notebooks.find(notebook => notebook.id == payload.notebookId) || {}
+    let notebook = state.notebooks.find(notebook => notebook.id === payload.notebookId) || {}
     notebook.title = payload.title
   },
 
   deleteNotebook(state, payload) {
-    state.notebooks = state.notebooks.filter(notebook => notebook.id != payload.notebookId)
+    state.notebooks = state.notebooks.filter(notebook => notebook.id !== payload.notebookId)
   },
 
   setNotebooks(state, payload) {

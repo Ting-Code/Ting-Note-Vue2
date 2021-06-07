@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <sidebar></sidebar>
+    <sidebar/>
     <router-view></router-view>
   </div>
 </template>
@@ -16,8 +16,6 @@ export default {
 </script>
 
 <style>
-
-/*@import '//at.alicdn.com/t/font_496303_kqrjhri8l25d0a4i.css';*/
 
 * {
   box-sizing: border-box;
@@ -55,4 +53,5 @@ ul, li{
   display: flex;
   align-items: stretch;
 }
+
 </style>
