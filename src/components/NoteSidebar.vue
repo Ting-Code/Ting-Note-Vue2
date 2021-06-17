@@ -44,7 +44,7 @@ export default {
   created() {
     this.getNotebooks().then(() => {
       this.setCurBook({curBookId: this.$route.query.notebookId})
-      //this.$store.commit('setCurBook',{curBookId: this.$route.query.notebookId})
+      //$store.commit('setCurBook',{curBookId: this.$route.query.notebookId})
       return this.getNotes({notebookId: this.curBook.id})
     }).then(() => {
       this.setCurNote({curNoteId: this.$route.query.noteId})
