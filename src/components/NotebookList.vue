@@ -11,7 +11,6 @@
                        :key="notebook.id">
             <div>
               <span class="iconfont icon-biji"><h3>{{notebook.title}}</h3></span>
-<!--              <span>{{notebook.noteCounts}}</span>-->
               <span class="action" @click.stop.prevent="onEdit(notebook)">编辑</span>
               <span class="action" @click.stop.prevent="onDelete(notebook)">删除</span>
               <span class="date">{{notebook.createdAtFriendly}}</span>
